@@ -1,25 +1,19 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import Signup from './components/Signup';
-import Login from './components/Login';
-import Dashboard from './components/Dashboard';
-import ProtectedRoute from './protectedRoutes/ProtectedRoutes';
+import Layout from './components/layout/Layout.jsx';
+import Home from './pages/Home.jsx';
+import AddProduct from './pages/AddProduct.jsx';
+import EditProduct from './pages/EditProduct.jsx';
 
 function App() {
   return (
     <Router>
-      <Routes>
-        <Route path="/" element={<Signup />} />
-        <Route path="/login" element={<Login />} />
-        <Route
-          path="/dashboard"
-          element={
-            <ProtectedRoute>
-              <Dashboard />
-            </ProtectedRoute>
-          }
-        />
-        <Route path="*" element={<Login />} />
-      </Routes>
+      <Layout>
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/add-product" element={<AddProduct />} />
+          <Route path="/edit-product/:id" element={<EditProduct />} />
+        </Routes>
+      </Layout>
     </Router>
   );
 }
