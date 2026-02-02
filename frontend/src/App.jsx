@@ -1,19 +1,47 @@
+import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import Layout from './components/layout/Layout.jsx';
+import { AuthProvider } from './context/AuthContext.jsx';
+import Navbar from './components/common/Navbar.jsx';
+import Footer from './components/common/Footer.jsx';
+import PrivateRoute from './components/common/PrivateRoute.jsx';
 import Home from './pages/Home.jsx';
-import AddProduct from './pages/AddProduct.jsx';
-import EditProduct from './pages/EditProduct.jsx';
+import LoginPage from './pages/LoginPage.jsx';
+import RegisterPage from './pages/RegisterPage.jsx';
+import Dashboard from './pages/Dashboard.jsx';
+import ItemsPage from './pages/ItemsPage.jsx';
 
 function App() {
   return (
     <Router>
-      <Layout>
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/add-product" element={<AddProduct />} />
-          <Route path="/edit-product/:id" element={<EditProduct />} />
-        </Routes>
-      </Layout>
+      <AuthProvider>
+        <div className="flex flex-col min-h-screen">
+          <Navbar />
+          <main className="flex-grow">
+            <Routes>
+              <Route path="/" element={<Home />} />
+              <Route path="/login" element={<LoginPage />} />
+              <Route path="/register" element={<RegisterPage />} />
+              <Route
+                path="/dashboard"
+                element={
+                  <PrivateRoute>
+                    <Dashboard />
+                  </PrivateRoute>
+                }
+              />
+              <Route
+                path="/items"
+                element={
+                  <PrivateRoute>
+                    <ItemsPage />
+                  </PrivateRoute>
+                }
+              />
+            </Routes>
+          </main>
+          <Footer />
+        </div>
+      </AuthProvider>
     </Router>
   );
 }
