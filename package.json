@@ -1,12 +1,13 @@
+
 {
-  "name": "mern-auth-crud",
+  "name": "crude-notes",
   "version": "1.0.0",
+  "private": true,
   "scripts": {
-    "start": "concurrently \"npm run server\" \"npm run client\"",
-    "server": "npm start --prefix server",
-    "client": "npm run dev --prefix client",
+    "server": "npm start --prefix backend",
+    "client": "npm run dev --prefix frontend",
     "dev": "concurrently \"npm run server\" \"npm run client\"",
-    "install-all": "npm install && npm install --prefix client && npm install --prefix server"
+    "install-all": "npm install && npm install --prefix frontend && npm install --prefix backend"
   },
   "devDependencies": {
     "concurrently": "^8.2.2"
